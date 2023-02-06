@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}Profile{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+
+  {% block content %}
+  <h2>Welcome {{user.username}}!</h2>
+  {{prompt}}
+  <form method="post">
+    {% csrf_token %}
+    {{ profileUpdateForm.as_p }}
+    <button type="submit">Update profile</button>
+  </form>
+  {% if isDriver == 1 %}
+      <form method="post">
+          {% csrf_token %}
+          {{ driverUpdateForm.as_p }}
+          <button type="submit">Update my car</button>
+      </form>
+      <p>Don't want to be a driver any more?</p><a href="{% url 'driverCancel' %}">cancel now</a><br>
+      
+  {% else %}
+      <p>Want to become a driver?</p>
+      <a href="{% url 'driverRegister' %}">register now</a><br>
+  {% endif %}
+  
+  {% endblock %}

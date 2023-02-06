@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <p><a href="{% url 'profile' %}">Profile</a></p>
+      <p><a href="{% url 'home' %}">Home</a></p>
+      <p><a href="{% url 'rideStart' %}">New ride</a></p>
+      <p><a href="{% url 'rideViewing' %}">My ride</a></p>
+      <p><a href="{% url 'logout' %}">Log Out</a></p>
+      {% block sidebar %}{% endblock %}
+    </div>
+    <div class="main-content">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    {% block content %}
+    <h2>Sharer's Ride Search Page</h2>
+    <p>Please enter your requests</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="submit">
+    </form>
+    
+    <p>Please submit the form. Then you can review the suitable rides you can join!</p><br>
+    
+    {% for ride in rideSuitable %}
+            <!-- list ride info-->
+            <fieldset>
+            <p> {{ forloop.counter }}. An owner's {{ride.isSharing}} ride from {{ride.start}}
+                to {{ride.destination}}, departs at {{ride.arrivalTime}}
+            </p><br>
+            {% if ride.isSharing == 'shareable' %}
+                <p>They are sharers:</p><br>
+                {% for sh in ride.sharer.all %}
+                    <p>{{sh.username}}</p><br>
+                {% endfor %}
+            {% endif %}
+            <p> 
+                Here is owner's special request: {{ride.specialRequest}}
+            </p><br> 
+            
+            <p>Do you want to join this ride? Please click both of options</p>
+            <form action = "{% url 'rideSharerSearchResult' %}" method="post">
+                {% csrf_token %}
+                <input type="radio" name="ridepk" value={{ride.pk}}>
+                <label for="ridepk">Yes</label><br>
+                <input type="radio" name="numPassengers" value={{numPassengers}}>
+                <label for="numPassengers">Confirm the number of passengers is {{numPassengers}}</label><br>
+                <input type="submit" value="submit">
+            </form>
+            </fieldset>
+    
+        {% endfor %}
+
+    {% endblock %}
+</body>

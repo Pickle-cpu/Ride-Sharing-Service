@@ -1,0 +1,6 @@
+1/29/2023   Some urls can be directly accessed without login 
+            User may register unvalid car info
+1/30/2023   what if user requests two similar rides?
+            when user request an open ride, the driver is set by default until some drivers confirm it.
+1/2/2023    User profile update may cause lose tracking of their car and rides.
+            

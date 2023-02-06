@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}Ride Viewing{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+{% block content %}
+
+<p> This is your ride from {{ride.start}}
+    to {{ride.destination}}, departs at {{ride.arrivalTime}}
+</p>
+{% if ride.isSharing == 'shareable' %}
+        <p>This ride now contains {{ride.ridesharercount}} sharers. The main sharers are:</p>
+        {% for sh in ride.ridesharer.all %}
+            <p>{{sh.sharerName}}, with any of his/her party</p>
+        {% endfor %}
+{% endif %}
+<p> 
+        Here is customer's special request: {{ride.specialRequest}}
+</p>
+<p> if you want to complete this ride, click here!</p>
+<a href="ride/rideComplete/{{ride.id}}">Mark as complete</a>
+
+{% endblock %}
+</body>

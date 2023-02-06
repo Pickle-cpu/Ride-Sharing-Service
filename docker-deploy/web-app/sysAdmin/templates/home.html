@@ -1,0 +1,32 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}Home{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+
+{% block content %}
+{% if user.is_authenticated %}
+  <p>Hi {{ user.username }}! What do you want to do?</p><br>
+  {{ prompt }}
+  <p><a href="{% url 'profile' %}">View my profile</a></p>
+  <p><a href="{% url 'driverRegister' %}">Become a driver</a></p>
+  <p><a href="{% url 'rideStart' %}">Start a new ride</a></p>
+  <!--<p><a href="{% url 'rideRequest' %}">Request a ride</a></p>-->
+  <p><a href="{% url 'rideViewing' %}">View my ride</a></p>
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+
+{% else %}
+
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+
+  <p>First time to use? Click here!</p>
+  <a href="{% url 'register' %}">Register</a>
+{% endif %}
+{% endblock %}

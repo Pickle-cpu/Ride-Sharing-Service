@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: #333;
+    background-color: #ffffff;
+    padding: 20px;
+  }
+  
+  .container {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 100px;
+    background-color: rgb(195, 176, 216);
+    padding: 20px;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+/* Add styles for headings */
+h1, h2, h3 {
+    color: rgb(231, 155, 15);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Add styles for links */
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+/* Add styles for tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #ddd;
+}
+
+/* Add styles for buttons */
+button {
+    background-color: #87bee2;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+  

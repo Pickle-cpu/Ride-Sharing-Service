@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}Ride Viewing{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+{% block content %}
+    <h2>Owner Ride (Open)</h2>
+    {% for ride in ownerOpen %}
+        <!-- list ride info-->
+        <fieldset>
+        <p> This is your {{ride.isSharing}} ride from {{ride.start}}
+            to {{ride.destination}}, departs at {{ride.arrivalTime}}
+        </p>
+        <p>Do you want to edit or browse whole detail about this ride?</p>
+    <form action = "{% url 'rideBrowseOwnerOpen' %}" method="post">
+        {% csrf_token %}
+        <input type="radio" name="ridepk" value={{ride.pk}}>
+        <label for="ridepk">Yes</label><br>
+        <input type="submit" value="submit">
+    </form>
+        </fieldset>
+    {% endfor %}
+
+    <h2>Owner Ride (Confirmed)</h2>
+    {% for ride in ownerConfirmed %}
+        <!-- list ride info-->
+        <fieldset>
+        <p> This is your {{ride.isSharing}} ride from {{ride.start}}
+            to {{ride.destination}}, departs at {{ride.arrivalTime}}</p>
+        <p>Do you want to browse whole detail about this ride?</p>
+        <form action = "{% url 'rideBrowseOwnerConfirmed' %}" method="post">
+            {% csrf_token %}
+            <input type="radio" name="ridepk" value={{ride.pk}}>
+            <label for="ridepk">Yes</label><br>
+            <input type="submit" value="submit">
+        </form>
+        </fieldset>
+    {% endfor %}
+
+    <h2>Owner Ride (Completed)</h2>
+    {% for ride in ownerCompleted %}
+        <!-- list ride info-->
+        <fieldset>
+        <p> This is your {{ride.isSharing}} ride from {{ride.start}}
+            to {{ride.destination}}, departs at {{ride.arrivalTime}}</p>
+        <p>Do you want to browse whole detail about this ride?</p>
+        <form action = "{% url 'rideBrowseOwnerCompleted' %}" method="post">
+            {% csrf_token %}
+             <input type="radio" name="ridepk" value={{ride.pk}}>
+            <label for="ridepk">Yes</label><br>
+            <input type="submit" value="submit">
+        </form>
+        </fieldset>
+    {% endfor %}
+
+    <h2>Driver Ride (Confirmed)</h2>
+    {% for ride in driverConfirmed %}
+    <fieldset>
+    <p> This is your ride from {{ride.start}}
+        to {{ride.destination}}, departs at {{ride.arrivalTime}}
+    </p>
+    <p>Do you want to complete or browse whole detail about this ride?</p>
+    <form action = "{% url 'rideBrowseDriverConfirmed' %}" method="post">
+        {% csrf_token %}
+        <input type="radio" name="ridepk" value={{ride.pk}}>
+        <label for="ridepk">Yes</label><br>
+        <input type="submit" value="submit">
+    </form>
+    </fieldset>
+    {% endfor %}
+
+    <h2>Driver Ride (Completed)</h2>
+    {% for ride in driverCompleted %}
+    <fieldset>
+    <p> This is your ride from {{ride.start}}
+        to {{ride.destination}}, departs at {{ride.arrivalTime}}
+    </p>
+    <p>Do you want to browse whole detail about this ride?</p>
+    <form action = "{% url 'rideBrowseDriverCompleted' %}" method="post">
+        {% csrf_token %}
+        <input type="radio" name="ridepk" value={{ride.pk}}>
+        <label for="ridepk">Yes</label><br>
+        <input type="submit" value="submit">
+    </form>
+    </fieldset>
+    {% endfor %}
+
+    <h2>Sharer Ride (Open)</h2>
+    {% for ride in sharerOpen %}
+    <fieldset>
+    <p> This is your ride from {{ride.start}}
+        to {{ride.destination}}, departs at {{ride.arrivalTime}}
+    </p>
+    <p>Do you want to leave or browse whole detail about this ride?</p>
+    <form action = "{% url 'rideBrowseSharerOpen' %}" method="post">
+        {% csrf_token %}
+        <input type="radio" name="ridepk" value={{ride.pk}}>
+        <label for="ridepk">Yes</label><br>
+        <input type="submit" value="submit">
+    </form>
+    </fieldset>
+    {% endfor %}
+
+    <h2>Sharer Ride (Confirmed)</h2>
+    {% for ride in sharerConfirmed %}
+    <fieldset>
+    <p> This is your ride from {{ride.start}}
+        to {{ride.destination}}, departs at {{ride.arrivalTime}}
+    </p>
+    <p>Do you want to browse whole detail about this ride?</p>
+    <form action = "{% url 'rideBrowseSharerConfirmed' %}" method="post">
+        {% csrf_token %}
+        <input type="radio" name="ridepk" value={{ride.pk}}>
+        <label for="ridepk">Yes</label><br>
+        <input type="submit" value="submit">
+    </form>
+    </fieldset>
+    {% endfor %}
+
+    <h2>Sharer Ride (Completed)</h2>
+    {% for ride in sharerCompleted %}
+    <fieldset>
+    <p> This is your ride from {{ride.start}}
+        to {{ride.destination}}, departs at {{ride.arrivalTime}}
+    </p>
+    <p>Do you want to browse whole detail about this ride?</p>
+    <form action = "{% url 'rideBrowseSharerCompleted' %}" method="post">
+        {% csrf_token %}
+        <input type="radio" name="ridepk" value={{ride.pk}}>
+        <label for="ridepk">Yes</label><br>
+        <input type="submit" value="submit">
+    </form>
+    </fieldset>
+    {% endfor %}
+
+{% endblock %}
+</body>
